@@ -3,7 +3,14 @@ import { Typography } from "@mui/material";
 const Footer = () => {
   return (
     <footer>
-      <Typography>Some company 2024</Typography>
+      <Typography
+        component={"p"}
+        variant="h5"
+        textAlign={"center"}
+        p={"2rem 0"}
+      >
+        Some company 2024
+      </Typography>
     </footer>
   );
 };

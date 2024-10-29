@@ -13,6 +13,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
   "&:hover": {
     backgroundColor: grey[800],
   },
+  padding: ".5rem 2rem",
 }));
 
 const MButton: FC<MButtonProps> = ({ action, title }) => {

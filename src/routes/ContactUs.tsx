@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { css } from "../../styled-system/css";
 import { useState } from "react";
+import * as Yup from "yup";
 
 interface MyFormValues {
   Name: string;
@@ -37,6 +38,18 @@ const inputStyles = css({
     outline: 0,
     boxShadow: "0 0 0 0.2rem rgba(158, 158, 158, 0.25)",
   },
+});
+
+const formSchema = Yup.object().shape({
+  Name: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  Email: Yup.string().email("Invalid email").required("Required"),
+  Message: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
 });
 
 const ContactUs = () => {
@@ -82,6 +95,7 @@ const ContactUs = () => {
               <CardContent>
                 <Formik
                   initialValues={initialValues}
+                  validationSchema={formSchema}
                   onSubmit={(values) => {
                     console.log({ values });
                     setIsSubmitted(true);
@@ -98,7 +112,11 @@ const ContactUs = () => {
                         placeholder="Your name"
                         className={inputStyles}
                       />
-                      <ErrorMessage name="Name" />
+                      <ErrorMessage
+                        name="Name"
+                        component={"p"}
+                        className={css({ mt: ".5rem", color: "red.500" })}
+                      />
                     </Box>
                     <Box mb={"1rem"}>
                       <label htmlFor="email" className={labelStyles}>
@@ -111,7 +129,11 @@ const ContactUs = () => {
                         placeholder="Your Email"
                         className={inputStyles}
                       />
-                      <ErrorMessage name="Email" />
+                      <ErrorMessage
+                        name="Email"
+                        component={"p"}
+                        className={css({ mt: ".5rem", color: "red.500" })}
+                      />
                     </Box>
                     <Box mb={"1rem"}>
                       <label htmlFor="message" className={labelStyles}>
@@ -124,7 +146,11 @@ const ContactUs = () => {
                         placeholder="Your message..."
                         className={inputStyles}
                       />
-                      <ErrorMessage name="Message" />
+                      <ErrorMessage
+                        name="Message"
+                        component={"p"}
+                        className={css({ mt: ".5rem", color: "red.500" })}
+                      />
                     </Box>
                     <Button
                       type="submit"

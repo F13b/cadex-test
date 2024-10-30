@@ -54,6 +54,7 @@ const formSchema = Yup.object().shape({
 
 const ContactUs = () => {
   const initialValues: MyFormValues = { Name: "", Email: "", Message: "" };
+  const [username, setUsername] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   return (
     <>
@@ -69,7 +70,7 @@ const ContactUs = () => {
               pt: "2rem",
             }}
           >
-            Message generated on the server
+            Thank you for your interest, {username}
           </Typography>
         ) : (
           <Box width={"80%"} m={"3rem auto"}>
@@ -98,6 +99,7 @@ const ContactUs = () => {
                   validationSchema={formSchema}
                   onSubmit={(values) => {
                     console.log({ values });
+                    setUsername(values.Name);
                     setIsSubmitted(true);
                   }}
                 >

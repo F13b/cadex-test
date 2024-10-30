@@ -1,53 +1,148 @@
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Field, Form, Formik } from "formik";
-import { TextField } from "formik-mui";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { css } from "../../styled-system/css";
+import { useState } from "react";
 
 interface MyFormValues {
   Name: string;
+  Email: string;
+  Message: string;
 }
 
+const labelStyles = css({
+  display: "block",
+  mb: ".25rem",
+});
+
+const inputStyles = css({
+  display: "block",
+  width: "100%",
+  height: "calc(2.25rem + 2px)",
+  padding: "0.375rem 0.75rem",
+  fontFamily: "inherit",
+  fontSize: "1rem",
+  lineHeight: "1.5",
+  color: "#212529",
+  backgroundColor: "#fff",
+  backgroundClip: "padding-box",
+  border: "1px solid #bdbdbd",
+  borderRadius: "0.25rem",
+  transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+  overflowY: "hidden",
+  resize: "both",
+  _focus: {
+    borderColor: "#bdbdbd",
+    outline: 0,
+    boxShadow: "0 0 0 0.2rem rgba(158, 158, 158, 0.25)",
+  },
+});
+
 const ContactUs = () => {
-  const initialValues: MyFormValues = { Name: "" };
+  const initialValues: MyFormValues = { Name: "", Email: "", Message: "" };
+  const [isSubmitted, setIsSubmitted] = useState(false);
   return (
     <>
       <Header />
-      <main>
-        <Box>
+      <Box component={"main"} sx={{ minHeight: "70vh" }}>
+        {isSubmitted ? (
           <Typography
             component={"h1"}
             variant="h3"
-            fontWeight={"bold"}
-            textAlign={"center"}
-            mb={"4rem"}
+            sx={{
+              textAlign: "center",
+              fontWeight: "bold",
+              pt: "2rem",
+            }}
           >
-            Only CTA on the page
+            Message generated on the server
           </Typography>
-          <Card>
-            <CardContent>
-              <Formik
-                initialValues={initialValues}
-                onSubmit={(values, actions) => {
-                  console.log({ values, actions });
-                  alert(JSON.stringify(values, null, 2));
-                  actions.setSubmitting(false);
-                }}
-              >
-                <Form>
-                  <Field
-                    component={TextField}
-                    label="Name"
-                    name="Name"
-                    variant="outlined"
-                  />
-                  <Button type="submit">Submit</Button>
-                </Form>
-              </Formik>
-            </CardContent>
-          </Card>
-        </Box>
-      </main>
+        ) : (
+          <Box width={"80%"} m={"3rem auto"}>
+            <Typography
+              component={"h1"}
+              variant="h3"
+              fontWeight={"bold"}
+              textAlign={"center"}
+              mb={"4rem"}
+            >
+              Only CTA on the page
+            </Typography>
+            <Card
+              className={css({
+                width: {
+                  sm: "80%",
+                  md: "70%",
+                  lg: "40%",
+                },
+                margin: "0 auto",
+              })}
+            >
+              <CardContent>
+                <Formik
+                  initialValues={initialValues}
+                  onSubmit={(values) => {
+                    console.log({ values });
+                    setIsSubmitted(true);
+                  }}
+                >
+                  <Form>
+                    <Box mb={"1rem"}>
+                      <label htmlFor="name" className={labelStyles}>
+                        Name
+                      </label>
+                      <Field
+                        id="name"
+                        name="Name"
+                        placeholder="Your name"
+                        className={inputStyles}
+                      />
+                      <ErrorMessage name="Name" />
+                    </Box>
+                    <Box mb={"1rem"}>
+                      <label htmlFor="email" className={labelStyles}>
+                        Email
+                      </label>
+                      <Field
+                        id="email"
+                        name="Email"
+                        type="email"
+                        placeholder="Your Email"
+                        className={inputStyles}
+                      />
+                      <ErrorMessage name="Email" />
+                    </Box>
+                    <Box mb={"1rem"}>
+                      <label htmlFor="message" className={labelStyles}>
+                        Message
+                      </label>
+                      <Field
+                        id="message"
+                        name="Message"
+                        as="textarea"
+                        placeholder="Your message..."
+                        className={inputStyles}
+                      />
+                      <ErrorMessage name="Message" />
+                    </Box>
+                    <Button
+                      type="submit"
+                      sx={{
+                        width: "100%",
+                        backgroundColor: "black",
+                        color: "white",
+                      }}
+                    >
+                      Submit
+                    </Button>
+                  </Form>
+                </Formik>
+              </CardContent>
+            </Card>
+          </Box>
+        )}
+      </Box>
       <Footer />
     </>
   );

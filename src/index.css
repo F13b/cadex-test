@@ -1,6 +1,7 @@
 @layer reset, base, tokens, recipes, utilities;
 
-* {
+html,
+body {
   margin: 0;
   padding: 0;
 }

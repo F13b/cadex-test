@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import MButton from "./MButton";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,7 +14,18 @@ const Header = () => {
         padding={"2rem 0"}
         m={"0 2rem"}
       >
-        <Typography variant="h5" textTransform={"capitalize"}>
+        <Typography
+          component={Link}
+          to={"/"}
+          variant="h5"
+          textTransform={"capitalize"}
+          sx={(theme) => ({
+            [theme.breakpoints.up("xs")]: { fontSize: "1rem" },
+            [theme.breakpoints.up("sm")]: { fontSize: "1rem" },
+            [theme.breakpoints.up("md")]: { fontSize: "1.5rem" },
+            [theme.breakpoints.up("lg")]: { fontSize: "2rem" },
+          })}
+        >
           some company
         </Typography>
         <MButton title="Contact us" action={() => navigate("/contact-us")} />

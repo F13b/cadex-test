@@ -1,23 +1,21 @@
-import { Button, styled } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { Button } from "@mui/material";
 import { FC } from "react";
 
-type MButtonProps = {
+interface MButtonProps {
   action?: () => void;
   title: string;
-};
-
-const ColorButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText(grey[900]),
-  backgroundColor: grey[900],
-  "&:hover": {
-    backgroundColor: grey[800],
-  },
-  padding: ".5rem 2rem",
-}));
+}
 
 const MButton: FC<MButtonProps> = ({ action, title }) => {
-  return <ColorButton onClick={action}>{title}</ColorButton>;
+  return (
+    <Button
+      onClick={action}
+      size="small"
+      sx={{ backgroundColor: "black", color: "white", p: ".5rem .75rem" }}
+    >
+      {title}
+    </Button>
+  );
 };
 
 export default MButton;

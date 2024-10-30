@@ -2,7 +2,11 @@ import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
-    <Box component={"footer"} borderTop={"1px solid grey"}>
+    <Box
+      component={"footer"}
+      borderTop={"1px solid grey"}
+      sx={{ position: "relative", bottom: 0, left: 0 }}
+    >
       <Typography
         component={"p"}
         variant="h5"

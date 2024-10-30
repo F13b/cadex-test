@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <header>
+    <Box component={"header"} borderBottom={"1px solid grey"}>
       <Box
         display={"flex"}
         justifyContent={"space-between"}
@@ -19,7 +19,7 @@ const Header = () => {
         </Typography>
         <MButton title="Contact us" action={() => navigate("/contact-us")} />
       </Box>
-    </header>
+    </Box>
   );
 };
 

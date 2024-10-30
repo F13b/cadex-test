@@ -1,8 +1,8 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
-    <footer>
+    <Box component={"footer"} borderTop={"1px solid grey"}>
       <Typography
         component={"p"}
         variant="h5"
@@ -11,7 +11,7 @@ const Footer = () => {
       >
         Some company 2024
       </Typography>
-    </footer>
+    </Box>
   );
 };
 

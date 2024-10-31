@@ -1,50 +1,28 @@
-# React + TypeScript + Vite
+# CADEX Test task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An application with 2 pages has been implemented: the main page and the contact page with the form.
+Both pages are adapted for small devices and tablets.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The React library was used to develop the application. Vite was used as a meta-framework for building and creating a project.
 
-## Expanding the ESLint configuration
+### UI
+To create a user interface, the MaterialUI component library is used. The Panda CSS library was used to write component styles.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Routing
+The React Router Dom library was used for page-by-page routing.
 
-- Configure the top-level `parserOptions` property like this:
+## About the work of the program
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+When a user visits the site, the `Root` home page opens. On it, the user sees a banner with text and video. Under the banner, he is presented with a block of information containing a table and a title.
+There are buttons on the page to go to the `Contact us` page.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+There is a small feedback form on the page. There are only 3 fields in it - username, email and message. All fields are required.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+In the fields "Name" and "Message" there are restrictions on the minimum and maximum number of characters. Minimum - 2, maximum - 50.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+The "Email" field is checked for the mandatory presence of the symbol `@`.
+
+The `Formik` library was used to create the form itself. And `Yup` was used to create validation.
+

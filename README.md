@@ -3,6 +3,8 @@
 An application with 2 pages has been implemented: the main page and the contact page with the form.
 Both pages are adapted for small devices and tablets.
 
+The application is available at the <link href="https://preeminent-pastelito-cc6bd7.netlify.app/">ссылке</link>
+
 ## Stack
 
 The React library was used to develop the application. Vite was used as a meta-framework for building and creating a project.
